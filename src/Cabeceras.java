@@ -19,7 +19,7 @@ public class Cabeceras {
         List<Asegurado> objeto = new ArrayList<>();
         Reader lectorArchivo = new FileReader(ubicacionArchivo.toString());
         Iterable<CSVRecord> registros = CSVFormat.RFC4180
-                .withFirstRecordAsHeader()
+        		.withFirstRecordAsHeader().withDelimiter('|')
                 .withHeader(CabecerasArchivoCSV.class)
                 .parse(lectorArchivo);
         for (CSVRecord registro : registros) {
@@ -60,7 +60,7 @@ public class Cabeceras {
         s = card;
         int suma = 0;
         if (card.length() == 16) {
-            for (int i = 0; i < s.length(); i++) {
+            for (int i = 0; i < s.length()-1; i++) {
                 int b = Integer.parseInt(s.charAt(i) + "");
                 if (i % 2 == 0) {
                     int a = 2 * Integer.parseInt(s.charAt(i) + "");
@@ -75,6 +75,7 @@ public class Cabeceras {
                     suma += b;
                 }
             }
+            suma+=Integer.parseInt(s.charAt(15)+"");
         } else return "N/V";
         if (suma % 10 == 0) {
             return valor;
@@ -101,6 +102,9 @@ public class Cabeceras {
         }
         String aux = suma + "";
         int suma2 = (Integer.parseInt(aux.charAt(0) + "") + 1) * 10;
+        if((suma2-suma)==10)
+        	return 0;
+        else
         return suma2 - suma;
     }
 }
