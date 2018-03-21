@@ -1,5 +1,12 @@
 public class Asegurado {
-    String nombre, apellidoP, apellidoM, fechaNac, fechaIng, tarjetaCredito, nss;
+    @Override
+	public String toString() {
+		return "Asegurado [nombre=" + nombre + ", apellidoP=" + apellidoP + ", apellidoM=" + apellidoM + ", fechaNac="
+				+ fechaNac + ", fechaIng=" + fechaIng + ", tarjetaCredito=" + tarjetaCredito + ", nss=" + nss
+				+ ", subdelegacion=" + subdelegacion + ", nConsecutivo=" + nConsecutivo + "]";
+	}
+
+	String nombre, apellidoP, apellidoM, fechaNac, fechaIng, tarjetaCredito, nss;
     int subdelegacion, nConsecutivo;
 
 
